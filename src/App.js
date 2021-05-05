@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import People from "./components/People";
+import { connect } from "react-redux";
+import { addMorePeople, clearPeople } from "./redux/actions/peopleActions";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.props.addMorePeople()}>
+          Add More People
+        </button>
+        <button onClick={() => this.props.clearPeople()}>Clear People</button>
+        <People />
+      </div>
+    );
+  }
 }
 
-export default App;
+export default connect(null, { addMorePeople, clearPeople })(App);
